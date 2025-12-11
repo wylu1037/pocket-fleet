@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.output/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# TanStack Router generated files
+# src/routeTree.gen.ts
+

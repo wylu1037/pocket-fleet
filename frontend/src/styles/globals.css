@@ -1,0 +1,100 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@400,500,600,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #0a0a0f;
+  --color-foreground: #fafafa;
+  --color-muted: #71717a;
+  --color-border: #27272a;
+  --color-card: #18181b;
+  --color-primary: #0ea5e9;
+  --color-accent: #d946ef;
+  --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #d946ef 100%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--color-background)] text-[var(--color-foreground)] font-sans antialiased;
+    background-image: 
+      radial-gradient(ellipse 80% 80% at 50% -20%, rgba(14, 165, 233, 0.15), transparent),
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(217, 70, 239, 0.1), transparent);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-primary-500/30 text-white;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    @apply bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium 
+           bg-gradient-to-r from-primary-500 to-accent-500 text-white
+           hover:from-primary-400 hover:to-accent-400 
+           transition-all duration-300 shadow-lg shadow-primary-500/25
+           hover:shadow-xl hover:shadow-primary-500/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium 
+           border border-zinc-700 text-zinc-300 
+           hover:border-zinc-600 hover:text-white hover:bg-zinc-800/50
+           transition-all duration-300;
+  }
+
+  .link-underline {
+    @apply relative text-zinc-300 hover:text-white transition-colors;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+

@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.output/
+
+# PocketBase data
+pb_data/
+
+# Binaries
+pocket-fleet
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
