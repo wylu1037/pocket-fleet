@@ -15,13 +15,11 @@ function BlogIndexPage() {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
         <div className="container-wide">
           <div className="flex h-16 items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-xl font-display font-bold gradient-text">
-                Pocket Fleet
-              </span>
+              <span className="gradient-text font-display text-xl font-bold">Pocket Fleet</span>
             </Link>
             <div className="flex items-center gap-8">
               <Link to="/" className="link-underline text-sm">
@@ -36,15 +34,11 @@ function BlogIndexPage() {
       </nav>
 
       {/* Header */}
-      <section className="pt-32 pb-16">
+      <section className="pb-16 pt-32">
         <div className="container-wide">
           <div className="max-w-2xl animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4">
-              Blog
-            </h1>
-            <p className="text-xl text-zinc-400">
-              Thoughts, stories, and insights from our team.
-            </p>
+            <h1 className="mb-4 font-display text-4xl font-bold sm:text-5xl">Blog</h1>
+            <p className="text-xl text-zinc-400">Thoughts, stories, and insights from our team.</p>
           </div>
         </div>
       </section>
@@ -57,27 +51,27 @@ function BlogIndexPage() {
               <p className="text-zinc-400">No posts yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post: BlogPost, i: number) => (
                 <Link
                   key={post.id}
                   to="/blog/$slug"
                   params={{ slug: post.slug }}
-                  className={`glass-card overflow-hidden group hover:border-zinc-700 transition-all duration-300 animate-slide-up animation-delay-${Math.min((i + 1) * 100, 500)}`}
+                  className={`glass-card group animate-slide-up overflow-hidden transition-all duration-300 hover:border-zinc-700 animation-delay-${Math.min((i + 1) * 100, 500)}`}
                 >
                   {post.cover_image && (
                     <div className="aspect-video overflow-hidden">
                       <img
                         src={getFileUrl(post, post.cover_image)}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                   )}
                   <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="mb-3 flex items-center gap-2">
                       {post.category && (
-                        <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary-500/10 text-primary-400 capitalize">
+                        <span className="rounded-full bg-primary-500/10 px-2 py-1 text-xs font-medium capitalize text-primary-400">
                           {post.category}
                         </span>
                       )}
@@ -91,13 +85,11 @@ function BlogIndexPage() {
                         </span>
                       )}
                     </div>
-                    <h2 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
+                    <h2 className="mb-2 text-xl font-semibold transition-colors group-hover:text-primary-400">
                       {post.title}
                     </h2>
                     {post.excerpt && (
-                      <p className="text-zinc-400 text-sm line-clamp-2">
-                        {post.excerpt}
-                      </p>
+                      <p className="line-clamp-2 text-sm text-zinc-400">{post.excerpt}</p>
                     )}
                   </div>
                 </Link>
@@ -108,17 +100,17 @@ function BlogIndexPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-zinc-800">
+      <footer className="border-t border-zinc-800 py-12">
         <div className="container-wide">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-sm text-zinc-500">
               © {new Date().getFullYear()} Pocket Fleet. All rights reserved.
             </div>
             <div className="flex gap-6">
-              <Link to="/" className="text-zinc-500 hover:text-white transition-colors">
+              <Link to="/" className="text-zinc-500 transition-colors hover:text-white">
                 Home
               </Link>
-              <Link to="/blog" className="text-zinc-500 hover:text-white transition-colors">
+              <Link to="/blog" className="text-zinc-500 transition-colors hover:text-white">
                 Blog
               </Link>
             </div>
@@ -128,4 +120,3 @@ function BlogIndexPage() {
     </div>
   )
 }
-

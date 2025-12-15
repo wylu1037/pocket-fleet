@@ -9,9 +9,7 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: 'Pocket Fleet - Modern website powered by PocketBase' },
     ],
-    links: [
-      { rel: 'icon', href: '/favicon.ico' },
-    ],
+    links: [{ rel: 'icon', href: '/favicon.ico' }],
   }),
 })
 
@@ -30,4 +28,3 @@ function RootComponent() {
     </html>
   )
 }
-

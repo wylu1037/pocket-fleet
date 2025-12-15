@@ -1,9 +1,7 @@
 import PocketBase from 'pocketbase'
 
 const pb = new PocketBase(
-  typeof window !== 'undefined' 
-    ? window.location.origin 
-    : 'http://localhost:8090'
+  typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8090'
 )
 
 export { pb }
@@ -46,7 +44,10 @@ export interface Media {
 }
 
 // Helper to get file URL
-export function getFileUrl(record: { id: string; collectionId?: string; collectionName?: string }, filename: string) {
+export function getFileUrl(
+  record: { id: string; collectionId?: string; collectionName?: string },
+  filename: string
+) {
   return pb.files.getURL(record, filename)
 }
 
@@ -54,10 +55,13 @@ export function getFileUrl(record: { id: string; collectionId?: string; collecti
 export async function getSiteConfig(): Promise<Record<string, string>> {
   try {
     const records = await pb.collection('site_config').getFullList<SiteConfig>()
-    return records.reduce((acc, record) => {
-      acc[record.key] = record.value
-      return acc
-    }, {} as Record<string, string>)
+    return records.reduce(
+      (acc, record) => {
+        acc[record.key] = record.value
+        return acc
+      },
+      {} as Record<string, string>
+    )
   } catch {
     return {}
   }
@@ -81,4 +85,3 @@ export async function getMedia(category?: string) {
     sort: '-created',
   })
 }
-
