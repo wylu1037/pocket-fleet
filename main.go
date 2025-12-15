@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"pocket-fleet/internal/common"
 	_ "pocket-fleet/migrations"
 
 	"github.com/pocketbase/pocketbase"
@@ -22,7 +23,7 @@ func main() {
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		se.Router.GET("/api/live", func(re *core.RequestEvent) error {
-			return re.JSON(200, map[string]string{"status": "ok"})
+			return common.OK(re, map[string]string{"status": "ok"})
 		})
 
 		return se.Next()
