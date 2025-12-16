@@ -27,7 +27,6 @@ type postController struct {
 	svc service.PostService
 }
 
-// List handles GET /api/posts
 func (ctrl *postController) List(e *core.RequestEvent) error {
 	posts, err := ctrl.svc.ListPosts()
 	if err != nil {
@@ -36,7 +35,6 @@ func (ctrl *postController) List(e *core.RequestEvent) error {
 	return common.OK(e, posts)
 }
 
-// Get handles GET /api/posts/:id
 func (ctrl *postController) Get(e *core.RequestEvent) error {
 	id := e.Request.PathValue("id")
 	if id == "" {
@@ -50,7 +48,6 @@ func (ctrl *postController) Get(e *core.RequestEvent) error {
 	return common.OK(e, post)
 }
 
-// Create handles POST /api/posts
 func (ctrl *postController) Create(e *core.RequestEvent) error {
 	var req struct {
 		Title   string `json:"title"`
@@ -72,7 +69,6 @@ func (ctrl *postController) Create(e *core.RequestEvent) error {
 	return common.Created(e, post)
 }
 
-// Update handles PUT /api/posts/:id
 func (ctrl *postController) Update(e *core.RequestEvent) error {
 	id := e.Request.PathValue("id")
 	if id == "" {
@@ -95,7 +91,6 @@ func (ctrl *postController) Update(e *core.RequestEvent) error {
 	return common.OK(e, post)
 }
 
-// Delete handles DELETE /api/posts/:id
 func (ctrl *postController) Delete(e *core.RequestEvent) error {
 	id := e.Request.PathValue("id")
 	if id == "" {

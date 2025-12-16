@@ -6,8 +6,12 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func NewConfigRepository(app *pocketbase.PocketBase) ConfigRepository {
-	return &configRepository{app: app}
+func NewConfigRepository(
+	app *pocketbase.PocketBase,
+) ConfigRepository {
+	return &configRepository{
+		app: app,
+	}
 }
 
 type ConfigRepository interface {

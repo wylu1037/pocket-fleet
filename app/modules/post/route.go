@@ -1,18 +1,17 @@
 package post
 
 import (
+	"pocket-fleet/app/container"
 	"pocket-fleet/app/modules/post/controller"
-	"pocket-fleet/app/modules/post/repository"
-	"pocket-fleet/app/modules/post/service"
 
-	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func RegisterRoutes(app *pocketbase.PocketBase, se *core.ServeEvent) {
-	repo := repository.NewPostRepository(app)
-	svc := service.NewPostService(repo)
-	ctrl := controller.NewPostController(svc)
+func RegisterRoutes(
+	c *container.Container,
+	se *core.ServeEvent,
+) {
+	ctrl := controller.NewPostController(c.PostService)
 
 	se.Router.GET("/api/posts", ctrl.List)
 	se.Router.GET("/api/posts/{id}", ctrl.Get)

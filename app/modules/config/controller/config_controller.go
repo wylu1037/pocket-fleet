@@ -7,8 +7,12 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func NewConfigController(svc service.ConfigService) ConfigController {
-	return &configController{svc: svc}
+func NewConfigController(
+	svc service.ConfigService,
+) ConfigController {
+	return &configController{
+		svc: svc,
+	}
 }
 
 type ConfigController interface {
@@ -22,7 +26,6 @@ type configController struct {
 	svc service.ConfigService
 }
 
-// List handles GET /api/configs
 func (ctrl *configController) List(e *core.RequestEvent) error {
 	configs, err := ctrl.svc.ListConfigs()
 	if err != nil {
@@ -31,7 +34,6 @@ func (ctrl *configController) List(e *core.RequestEvent) error {
 	return common.OK(e, configs)
 }
 
-// Get handles GET /api/configs/{key}
 func (ctrl *configController) Get(e *core.RequestEvent) error {
 	key := e.Request.PathValue("key")
 	if key == "" {
@@ -45,7 +47,6 @@ func (ctrl *configController) Get(e *core.RequestEvent) error {
 	return common.OK(e, config)
 }
 
-// Set handles PUT /api/configs/{key}
 func (ctrl *configController) Set(e *core.RequestEvent) error {
 	key := e.Request.PathValue("key")
 	if key == "" {
@@ -72,7 +73,6 @@ func (ctrl *configController) Set(e *core.RequestEvent) error {
 	return common.OK(e, config)
 }
 
-// Delete handles DELETE /api/configs/{key}
 func (ctrl *configController) Delete(e *core.RequestEvent) error {
 	key := e.Request.PathValue("key")
 	if key == "" {

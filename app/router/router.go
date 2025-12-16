@@ -1,6 +1,7 @@
 package router
 
 import (
+	"pocket-fleet/app/container"
 	"pocket-fleet/app/modules/config"
 	"pocket-fleet/app/modules/post"
 
@@ -9,6 +10,8 @@ import (
 )
 
 func RegisterRoutes(app *pocketbase.PocketBase, se *core.ServeEvent) {
-	config.RegisterRoutes(app, se)
-	post.RegisterRoutes(app, se)
+	c := container.New(app)
+
+	config.RegisterRoutes(c, se)
+	post.RegisterRoutes(c, se)
 }
