@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"pocket-fleet/app/router"
 	"pocket-fleet/internal/common"
 	_ "pocket-fleet/migrations"
 
@@ -25,6 +26,8 @@ func main() {
 		se.Router.GET("/api/live", func(re *core.RequestEvent) error {
 			return common.OK(re, map[string]string{"status": "ok"})
 		})
+
+		router.RegisterRoutes(app, se)
 
 		return se.Next()
 	})
